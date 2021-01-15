@@ -1,0 +1,18 @@
+{
+  "name": "electron-programador",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "author": {
+    "name": "Fernando Marca Magalhães",
+    "email": "fernandomarca@hotmail.com"
+  },
+  "description": "Meu primeiro programa em Electron",
+  "scripts": {
+    "dev:start":"NODE_ENV=development electron .",
+    "start":"electron ."
+  },
+  "devDependencies": {
+    "electron": "^11.2.0"
+  }
+}
