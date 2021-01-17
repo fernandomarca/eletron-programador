@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline'">
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'none'"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="script-src 'unsafe-inline'"
+        />
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'none'"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Home</title>
-    <style>
-        .container{
-            background-color: beige;
-        }
-    </style>
-</head>
-<body>
-    <h1>Hello world!</h1>
-    <div class="container">
-        <h2>Box</h2>
-        
-    </div>
-</body>
+        <title>Home</title>
+        <style>
+            .container {
+                background-color: beige;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Hello world!</h1>
+        <div class="container">
+            <h3 id="processor"></h3>
+        </div>
+        <button onclick="sendNewWindowMessage()">Abrir nova janela</button>
+
+        <script>
+            const { ipcRenderer } = require("electron");
+            const processor = document.querySelector("#processor");
+            ipcRenderer.on("cpu_name", (e, value) => {
+                processor.innerHTML = value;
+            });
+            function sendNewWindowMessage() {
+                ipcRenderer.send("open_new_window");
+            }
+        </script>
+    </body>
 </html>
